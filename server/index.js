@@ -5,10 +5,14 @@ const blogRouter = require("./route/blog-route");
 require("./db");
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
 app.use(express.json());
 
-app.use('/api/blogs', blogRouter)
+app.use("/api/blogs", blogRouter);
 
 app.use("/api", (req, res) => {
   res.send("Hello World");
