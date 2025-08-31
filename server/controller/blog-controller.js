@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 const Blog = require("../model/Blog");
 
-// fetch list of blogs
-// add a new blog
-// delete a blog
-// update a blog
+//fetch list of blogs
+//add a new blog
+//delete a blog
+//update a blog
 
-// fetch list of blogs
-const fetchBlog = async (req, res) => {
+//fetch list of blogs
+const fetchListOfBlogs = async (req, res) => {
   let blogList;
   try {
     blogList = await Blog.find();
@@ -18,10 +18,11 @@ const fetchBlog = async (req, res) => {
   if (!blogList) {
     return res.status(404).json({ message: "No Blogs Found" });
   }
-  return res.status(200).json(blogList);
+
+  return res.status(200).json({ blogList });
 };
 
-// add a new blog
+//add a new blog
 const addNewBlog = async (req, res) => {
   const { title, description } = req.body;
   const currentDate = new Date();
@@ -50,25 +51,26 @@ const addNewBlog = async (req, res) => {
   return res.status(200).json({ newlyCreateBlog });
 };
 
-// delete a blog
-const deleteBlog = async (req, res) => {
+//delete a blog
+const deleteABlog = async (req, res) => {
   const id = req.params.id;
 
   try {
     const findCurrentBlog = await Blog.findByIdAndDelete(id);
     if (!findCurrentBlog) {
-      return res.status(404).json({ message: "Blog not Found" });
+      return res.status(404).json({ message: "Blog not found" });
     }
+
     return res.status(200).json({ message: "Successfully Deleted" });
   } catch (e) {
+    console.log(e);
     return res
       .status(500)
-      .json({ message: "Unable to delete ! Please try again " });
+      .json({ message: "Unable to delete ! Please try again" });
   }
 };
 
-// update the blog
-
+//update a blog
 const updateABlog = async (req, res) => {
   const id = req.params.id;
 
@@ -83,8 +85,8 @@ const updateABlog = async (req, res) => {
   } catch (e) {
     console.log(e);
 
-    return res.send(500).json({
-      message: "something went wrong while updating ! please try again",
+    return res.status(500).json({
+      message: "Something went wrong while updating ! Please try again",
     });
   }
 
@@ -92,7 +94,7 @@ const updateABlog = async (req, res) => {
     return res.status(500).json({ message: "Unable to update" });
   }
 
-  return res.send(200).json({ currentBlogToUpdate });
+  return res.status(200).json({ currentBlogToUpdate });
 };
 
-module.exports = { fetchBlog, deleteBlog, updateABlog, addNewBlog };
+module.exports = { fetchListOfBlogs, deleteABlog, updateABlog, addNewBlog };

@@ -1,10 +1,98 @@
+/* General Wrapper Styling */
 .wrapper {
   padding: 30px;
+
+  background-color: #f4f4f9;
+}
+.wrapper h1 {
+  text-align: center;
 }
 
+/* Form Wrapper Styling */
 .formWrapper {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Input Fields and Textarea */
+input,
+textarea {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  width: 100%;
+  transition: border 0.3s ease;
+}
+
+/* Styling the Button */
+.formWrapper button {
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Button Hover Effect */
+.formWrapper button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+/* Focus effect for input fields and textarea */
+input:focus,
+textarea:focus {
+  border: 1px solid #4caf50;
+  outline: none;
+}
+
+/* Textarea Specific Styling */
+textarea {
+  min-height: 150px;
+  resize: vertical;
+  font-family: Arial, sans-serif;
+}
+
+/* Responsive button for mobile screens (tablets and smaller) */
+@media (max-width: 768px) {
+  .formWrapper button {
+    padding: 14px 28px;
+    font-size: 18px;
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  /* Adjust input fields and textarea for smaller screens */
+  input,
+  textarea {
+    padding: 14px;
+    font-size: 18px;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .formWrapper button {
+    font-size: 16px;
+    padding: 14px 28px;
+  }
+
+  .formWrapper input,
+  .formWrapper textarea {
+    font-size: 16px;
+    padding: 14px 28px;
+  }
 }

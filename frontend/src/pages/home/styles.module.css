@@ -1,0 +1,14 @@
+.wrapper {
+  padding: 30px;
+}
+
+.blogListContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.blogListContainer div {
+  padding: 30px;
+  border: 1px solid red;
+}
