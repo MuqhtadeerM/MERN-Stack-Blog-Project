@@ -12,7 +12,7 @@ export default function Home() {
 
   const fetchListBlog = async () => {
     setPending(true);
-    const response = await axios.get("http://localhost:5000/api/blogs");
+    const response = await axios.get("/api/blogs");
     const result = await response.data;
 
     console.log(result);
@@ -28,7 +28,7 @@ export default function Home() {
 
   const handleDelete = async (getCurrentId) => {
     const response = await axios.delete(
-      `http://localhost:5000/api/blogs/delete/${getCurrentId}`
+      `/api/blogs/delete/${getCurrentId}`
     );
     const result = await response.data;
 
