@@ -15,13 +15,13 @@ export default function AddNewBlog() {
   const handleSaveBlogToDatabase = async () => {
     const response = isEdit
       ? await axios.put(
-          `http://localhost:5000/api/blogs/update/${location.state.getCurrentItem._id}`,
+          `/api/blogs/update/${location.state.getCurrentItem._id}`,
           {
             title: formData.title,
             description: formData.description,
           }
         )
-      : await axios.post("http://localhost:5000/api/blogs/add", {
+      : await axios.post("/api/blogs/add", {
           title: formData.title,
           description: formData.description,
         });
