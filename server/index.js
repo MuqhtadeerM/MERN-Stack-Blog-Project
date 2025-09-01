@@ -14,7 +14,7 @@ app.get("/api", (req, res) => {
   res.status(200).json({ message: "Hello World" });
 });
 
-app.listen(5000, () => console.log(`App is running at 5000...`));
+app.listen(10000, () => console.log(`App is running at 5000...`));
 
 // const serverless = require("serverless-http");
 // module.exports = serverless(app);
