@@ -10,31 +10,36 @@ export default function AddNewBlog() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Replace localhost with your Render backend URL here:
-  const API_URL = "https://your-backend-render-url.onrender.com/api";
+  // ✅ Correct Render backend URL
+  const API_URL = "https://mern-stack-blog-project-1-euab.onrender.com/api";
 
   async function handleSaveBlogToDatabase() {
-    const response = isEdit
-      ? await axios.put(
-          `${API_URL}/blogs/update/${location.state.getCurrentBlogItem._id}`,
-          {
+    try {
+      const response = isEdit
+        ? await axios.put(
+            `${API_URL}/blogs/update/${location.state.getCurrentBlogItem._id}`,
+            {
+              title: formData.title,
+              description: formData.description,
+            }
+          )
+        : await axios.post(`${API_URL}/blogs/add`, {
             title: formData.title,
             description: formData.description,
-          }
-        )
-      : await axios.post(`${API_URL}/blogs/add`, {
-          title: formData.title,
-          description: formData.description,
-        });
+          });
 
-    const result = await response.data;
-    if (result) {
-      setIsEdit(false);
-      setFormData({
-        title: "",
-        description: "",
-      });
-      navigate("/");
+      const result = response.data;
+
+      if (result) {
+        setIsEdit(false);
+        setFormData({
+          title: "",
+          description: "",
+        });
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Error saving blog:", error);
     }
   }
 
