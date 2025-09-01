@@ -10,16 +10,19 @@ export default function AddNewBlog() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Replace localhost with your Render backend URL here:
+  const API_URL = "https://your-backend-render-url.onrender.com/api";
+
   async function handleSaveBlogToDatabase() {
     const response = isEdit
       ? await axios.put(
-          `http://localhost:10000/api/blogs/update/${location.state.getCurrentBlogItem._id}`,
+          `${API_URL}/blogs/update/${location.state.getCurrentBlogItem._id}`,
           {
             title: formData.title,
             description: formData.description,
           }
         )
-      : await axios.post("http://localhost:10000/api/blogs/add", {
+      : await axios.post(`${API_URL}/blogs/add`, {
           title: formData.title,
           description: formData.description,
         });
@@ -36,7 +39,6 @@ export default function AddNewBlog() {
   }
 
   useEffect(() => {
-    console.log(location);
     if (location.state) {
       const { getCurrentBlogItem } = location.state;
       setIsEdit(true);
