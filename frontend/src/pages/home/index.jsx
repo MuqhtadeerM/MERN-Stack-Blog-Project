@@ -10,7 +10,7 @@ export default function Home() {
     useContext(GlobalContext);
   const navigate = useNavigate();
 
-  const API_URL = "http://localhost:10000/api";
+  const API_URL = "https://mern-stack-blog-project-1-euab.onrender.com/api";
 
   async function fetchListOfBlogs() {
     setPending(true);
