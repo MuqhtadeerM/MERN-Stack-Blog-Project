@@ -6,7 +6,6 @@ const Blog = require("../model/Blog");
 //delete a blog
 //update a blog
 
-//fetch list of blogs
 const fetchListOfBlogs = async (req, res) => {
   let blogList;
   try {
@@ -22,7 +21,6 @@ const fetchListOfBlogs = async (req, res) => {
   return res.status(200).json({ blogList });
 };
 
-//add a new blog
 const addNewBlog = async (req, res) => {
   const { title, description } = req.body;
   const currentDate = new Date();
@@ -51,7 +49,6 @@ const addNewBlog = async (req, res) => {
   return res.status(200).json({ newlyCreateBlog });
 };
 
-//delete a blog
 const deleteABlog = async (req, res) => {
   const id = req.params.id;
 
@@ -70,7 +67,6 @@ const deleteABlog = async (req, res) => {
   }
 };
 
-//update a blog
 const updateABlog = async (req, res) => {
   const id = req.params.id;
 

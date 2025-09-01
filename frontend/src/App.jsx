@@ -11,7 +11,6 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/add-blog" element={<AddNewBlog />} />
-        <Route exact path="/edit-blog/:id" element={<AddNewBlog />} />
       </Routes>
     </div>
   );
