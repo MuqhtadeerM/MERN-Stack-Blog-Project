@@ -10,29 +10,39 @@ export default function Home() {
     useContext(GlobalContext);
   const navigate = useNavigate();
 
+  const API_URL = "http://localhost:10000/api";
+
   async function fetchListOfBlogs() {
     setPending(true);
-    const response = await axios.get("http://localhost:5000/api/blogs");
-    const result = await response.data;
+    try {
+      const response = await axios.get(`${API_URL}/blogs`);
+      const result = await response.data;
 
-    if (result && result.blogList && result.blogList.length) {
-      setBlogList(result.blogList);
-      setPending(false);
-    } else {
-      setPending(false);
+      if (result && result.blogList && result.blogList.length) {
+        setBlogList(result.blogList);
+      } else {
+        setBlogList([]);
+      }
+    } catch (error) {
+      console.error("Error fetching blogs:", error);
       setBlogList([]);
+    } finally {
+      setPending(false);
     }
   }
 
   async function handleDeleteBlog(getCurrentId) {
-    const response = await axios.delete(
-      `http://localhost:5000/api/blogs/delete/${getCurrentId}`
-    );
-    const result = await response.data;
+    try {
+      const response = await axios.delete(
+        `${API_URL}/blogs/delete/${getCurrentId}`
+      );
+      const result = await response.data;
 
-    if (result?.message) {
-      fetchListOfBlogs();
-      // navigate(0)
+      if (result?.message) {
+        fetchListOfBlogs();
+      }
+    } catch (error) {
+      console.error("Error deleting blog:", error);
     }
   }
 
