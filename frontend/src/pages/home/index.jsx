@@ -10,12 +10,12 @@ export default function Home() {
     useContext(GlobalContext);
   const navigate = useNavigate();
 
-  const API_URL = "https://mern-stack-blog-project-1-euab.onrender.com/api";
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   async function fetchListOfBlogs() {
     setPending(true);
     try {
-      const response = await axios.get(`${API_URL}/blogs`);
+      const response = await axios.get(`${API_BASE_URL}/blogs`);
       const result = await response.data;
 
       if (result && result.blogList && result.blogList.length) {
@@ -34,7 +34,7 @@ export default function Home() {
   async function handleDeleteBlog(getCurrentId) {
     try {
       const response = await axios.delete(
-        `${API_URL}/blogs/delete/${getCurrentId}`
+        `${API_BASE_URL}/blogs/delete/${getCurrentId}`
       );
       const result = await response.data;
 

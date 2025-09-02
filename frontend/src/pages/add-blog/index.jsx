@@ -10,20 +10,18 @@ export default function AddNewBlog() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // ✅ Correct Render backend URL
-  const API_URL = "https://mern-stack-blog-project-1-euab.onrender.com/api";
-
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   async function handleSaveBlogToDatabase() {
     try {
       const response = isEdit
         ? await axios.put(
-            `${API_URL}/blogs/update/${location.state.getCurrentBlogItem._id}`,
+            `${API_BASE_URL}/blogs/update/${location.state.getCurrentBlogItem._id}`,
             {
               title: formData.title,
               description: formData.description,
             }
           )
-        : await axios.post(`${API_URL}/blogs/add`, {
+        : await axios.post(`${API_BASE_URL}/blogs/add`, {
             title: formData.title,
             description: formData.description,
           });
